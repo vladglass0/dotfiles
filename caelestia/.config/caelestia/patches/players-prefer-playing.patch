@@ -1,0 +1,12 @@
+diff --color -ruN a/services/Players.qml b/services/Players.qml
+--- a/services/Players.qml	2026-10-24 17:31:56.754476136 +0300
++++ b/services/Players.qml	2026-10-24 17:31:56.791475697 +0300
+@@ -13,7 +13,7 @@
+     id: root
+ 
+     readonly property list<MprisPlayer> list: Mpris.players.values
+-    readonly property MprisPlayer active: props.manualActive ?? list.find(p => getIdentity(p) === GlobalConfig.services.defaultPlayer) ?? list[0] ?? null
++    readonly property MprisPlayer active: props.manualActive ?? list.find(p => getIdentity(p) === GlobalConfig.services.defaultPlayer) ?? list.find(p => p.isPlaying) ?? list[0] ?? null
+     property alias manualActive: props.manualActive
+ 
+     // Dedup key for progressive metadata (e.g. mpv-mpris/yt-dlp player fills title then artist later).

@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = caelestia-shell
+
+[Action]
+Description = Re-applying "prefer playing player" patch to Caelestia shell...
+When = PostTransaction
+Exec = /usr/bin/patch -d /etc/xdg/quickshell/caelestia -p1 --forward --batch -r - -i /usr/local/share/caelestia-patches/players-prefer-playing.patch

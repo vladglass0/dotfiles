@@ -1,0 +1,21 @@
+{
+  "theme": {
+    "postHook": "/home/rtxbb/.local/bin/caelestia-angelos-theme"
+  },
+  "toggles": {
+    "sysmon": {
+      "btop": {
+        "command": [
+          "kitty",
+          "--class",
+          "btop",
+          "-T",
+          "btop",
+          "fish",
+          "-C",
+          "exec btop"
+        ]
+      }
+    }
+  }
+}

@@ -1,43 +1,25 @@
 <div align="center">
 
-# ✦ dotfiles
+<picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/hero-dark.svg"><img src=".github/assets/hero-light.svg" width="100%" alt="dotfiles — CachyOS · Hyprland · Caelestia · fish"></picture>
 
-**CachyOS · Hyprland · Caelestia · fish**
+<picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/packages-dark.svg"><img src=".github/assets/packages-light.svg" width="100%" alt="Packages"></picture>
 
-Конфиги, разложенные по пакетам [GNU Stow](https://www.gnu.org/software/stow/)
+<picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/wave-dark.svg"><img src=".github/assets/wave-light.svg" width="100%" alt=""></picture>
 
 </div>
-
----
-
-## 📦 Пакеты
-
-| | Пакет | Что внутри |
-|---|---|---|
-| 🪟 | `hypr` | Hyprland (Lua-конфиг) |
-| 🌙 | `caelestia` | Caelestia shell + CLI |
-| 🧩 | `quickshell` | Quickshell |
-| 🔍 | `fuzzel` | лаунчер |
-| 💻 | `foot` · `kitty` · `alacritty` | терминалы |
-| 🐟 | `fish` | основной шелл |
-| 🚀 | `starship` | промпт |
-| 🐚 | `zsh` · `bash` | запасные шеллы |
-| 🌿 | `git` | `.gitconfig`, глобальный ignore |
-| 📊 | `btop` · `fastfetch` · `cava` | мониторинг и красота |
-| ✏️ | `micro` | редактор |
 
 ## ⚡ Установка
 
 ```sh
 sudo pacman -S stow git
-git clone <repo-url> ~/dotfiles
+git clone https://github.com/vladglass0/dotfiles ~/dotfiles
 cd ~/dotfiles
 stow */            # все пакеты
 stow fish git zsh  # или только нужные
 ```
 
 > [!TIP]
-> Сначала запусти `stow -nv <пакет>`. Это dry-run: он покажет, что будет слинковано и где есть конфликты.
+> `stow -nv <пакет>` делает dry-run: показывает, что будет слинковано и где есть конфликты.
 
 ## 🛠 Как это работает
 
@@ -48,22 +30,22 @@ dotfiles/fish/.config/fish  →  ~/.config/fish
 dotfiles/zsh/.zshrc         →  ~/.zshrc
 ```
 
-## ➕ Добавить новый конфиг
+## ➕ Добавить / ➖ убрать
 
 ```sh
 mkdir -p ~/dotfiles/<имя>/.config
 mv ~/.config/<имя> ~/dotfiles/<имя>/.config/
 cd ~/dotfiles && stow <имя>
-```
 
-## ➖ Убрать пакет
-
-```sh
 stow -D <имя>      # удалит только симлинки, файлы останутся в репо
 ```
 
 ## 🙈 Не попадает в git
 
-- `fish_variables` — состояние конкретной машины
-- `*.bak*` — бэкапы
-- `micro/backups`, `micro/buffers` — кэш редактора
+`fish_variables` · `*.bak*` · `micro/backups` · `micro/buffers`
+
+<div align="center">
+
+<picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/wave-dark.svg"><img src=".github/assets/wave-light.svg" width="100%" alt=""></picture>
+
+</div>

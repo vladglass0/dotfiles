@@ -2,50 +2,52 @@
 
 <picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/hero-dark.svg"><img src=".github/assets/hero-light.svg" width="100%" alt="dotfiles — CachyOS · Hyprland · Caelestia · fish"></picture>
 
-<picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/packages-dark.svg"><img src=".github/assets/packages-light.svg" width="100%" alt="Packages"></picture>
-
-<picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/wave-dark.svg"><img src=".github/assets/wave-light.svg" width="100%" alt=""></picture>
-
 </div>
 
-## ⚡ Установка
+Мой rice на CachyOS: Hyprland с конфигом на Lua, Caelestia/Quickshell, fish.
+Раскладывается через GNU Stow — одна папка = один пакет, внутри повторяется структура `$HOME`.
+
+## Установка
 
 ```sh
-sudo pacman -S stow git
+sudo pacman -S --needed stow git
 git clone https://github.com/vladglass0/dotfiles ~/dotfiles
 cd ~/dotfiles
 stow */            # все пакеты
-stow fish git zsh  # или только нужные
+stow fish zsh      # или только нужные
+stow -nv hypr      # dry-run: покажет конфликты
 ```
 
-> [!TIP]
-> `stow -nv <пакет>` делает dry-run: показывает, что будет слинковано и где есть конфликты.
+## Пакеты
 
-## 🛠 Как это работает
+| Пакет | Что внутри |
+| --- | --- |
+| `hypr` | Hyprland, конфиг на Lua (`hyprland.lua` + модули в `hyprland/`) |
+| `caelestia` | shell, бар, лаунчер |
+| `quickshell` | виджеты angelos |
+| `kitty` | плюс `foot` и `alacritty` |
+| `fish` | основной шелл |
+| `zsh`, `bash` | запасные шеллы |
+| `starship` | промпт |
+| `fuzzel` | dmenu |
+| `micro` | редактор |
+| `btop`, `fastfetch` | монитор и fetch |
+| `cava` | визуализатор + GLSL-шейдеры |
 
-Каждая папка — отдельный пакет, внутри которого повторяется структура `$HOME`:
+## Хоткеи
 
-```
-dotfiles/fish/.config/fish  →  ~/.config/fish
-dotfiles/zsh/.zshrc         →  ~/.zshrc
-```
+<picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/hotkeys-dark.svg"><img src=".github/assets/hotkeys-light.svg" width="100%" alt="Хоткеи Hyprland: терминал, лаунчер, окна, рабочие столы, скриншоты"></picture>
 
-## ➕ Добавить / ➖ убрать
+Карточка собирается из [`variables.lua`](hypr/.config/hypr/variables.lua), там же полный список.
+
+## Свой пакет
 
 ```sh
-mkdir -p ~/dotfiles/<имя>/.config
-mv ~/.config/<имя> ~/dotfiles/<имя>/.config/
-cd ~/dotfiles && stow <имя>
-
-stow -D <имя>      # удалит только симлинки, файлы останутся в репо
+mkdir -p mypkg/.config/mypkg
+stow mypkg       # прилинковать
+stow -D mypkg    # отвязать, файлы останутся в репо
 ```
 
-## 🙈 Не попадает в git
+Не коммичу: `fish_variables`, `*.bak*`, бэкапы micro.
 
-`fish_variables` · `*.bak*` · `micro/backups` · `micro/buffers`
-
-<div align="center">
-
-<picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/wave-dark.svg"><img src=".github/assets/wave-light.svg" width="100%" alt=""></picture>
-
-</div>
+Основано на [caelestia-dots](https://github.com/caelestia-dots), [Hyprland](https://github.com/hyprwm/Hyprland), [Quickshell](https://quickshell.org), [CachyOS](https://cachyos.org), [GNU Stow](https://www.gnu.org/software/stow/).
